@@ -62,11 +62,9 @@ public class Main {
                 .mapToDouble(person -> (person.getPhysics() + person.getMathematics() + person.getRus() + person.getLiterature() + person.getGeometry() + person.getInformatics())/6)
                 .average()
                 .orElse(0.0);
-        for (Person person : honorStudent) {
-            if (highScore >= 5.0) {
-                System.out.println(person);
-            }
-        }
+        honorStudent.stream()
+                .filter(person -> (person.getPhysics() + person.getMathematics() + person.getRus() + person.getLiterature() + person.getGeometry() + person.getInformatics()) / 6 >= 5.0)
+                .forEach(person -> System.out.println(person));
 
         /**
          * Используем personNameDataGroups для сокращения пула поиска по фамилии (получаем только фамилии начинающиеся с символа искомой фамилии)
