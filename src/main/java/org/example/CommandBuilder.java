@@ -12,13 +12,15 @@ public class CommandBuilder {
     }
 
     public Command buildCommand(String commandName) {
-        if ("highSchoolScore".equals(commandName)) {
-            return new HighSchoolScore(studentService);
-        } else if ("honorStudent".equals(commandName)) {
-            return new HonorStudents(studentService);
-        } else if ("searchLastName".equals(commandName)) {
-            return new SearchLastName(studentService);
+        switch (commandName) {
+            case "highSchoolScore":
+                return new HighSchoolScore(studentService);
+            case "honorStudent":
+                return new HonorStudents(studentService);
+            case "searchLastName":
+                return new SearchLastName(studentService);
+            default:
+                return null;
         }
-        return null;
     }
 }
