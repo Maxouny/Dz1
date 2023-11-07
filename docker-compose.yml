@@ -18,7 +18,18 @@ services:
     networks:
       - postgres
     restart: unless-stopped
-
+#  tomcat:
+#    container_name: tomcat_container
+#    image: tomcat:9.0.82
+#    ports:
+#      - "8080:8080"
+#    volumes:
+#      - ./target/web-app.war:/usr/local/tomcat/webapps/web-app.war
+#    depends_on:
+#      - postgres
+#    networks:
+#      - postgres
+#    restart: unless-stopped
 #  app:
 #    image: app
 #    depends_on:
@@ -48,4 +59,3 @@ networks:
 
 volumes:
   postgres:
-  pgadmin:
