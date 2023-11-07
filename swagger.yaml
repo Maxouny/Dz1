@@ -1,0 +1,82 @@
+swagger: '2.0'
+info:
+  title: API Оценок
+  version: 1.0.0
+basePath: /api
+host: localhost:8080  # Локальный сервер и порт вашего приложения
+schemes:
+  - http
+paths:
+  /grades/update:
+    post:
+      summary: Обновление оценки ученика
+      parameters:
+        - in: query
+          name: family
+          type: string
+          required: true
+          description: Фамилия ученика
+        - in: query
+          name: name
+          type: string
+          required: true
+          description: Имя ученика
+        - in: query
+          name: class
+          type: integer
+          required: true
+          description: Класс ученика
+        - in: query
+          name: subject
+          type: string
+          required: true
+          description: Предмет для обновления оценки
+        - in: query
+          name: newGrade
+          type: integer
+          required: true
+          description: Новое значение оценки
+      responses:
+        200:
+          description: Оценка успешно обновлена
+        400:
+          description: Недопустимые входные данные
+        404:
+          description: Ученик не найден
+  /grades/average:
+    get:
+      summary: Получение средних оценок для класса
+      parameters:
+        - in: query
+          name: class
+          type: integer
+          required: true
+          description: Класс, для которого нужно получить средние оценки
+      responses:
+        200:
+          description: Список средних оценок учеников
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GradesDTO'
+        500:
+          description: Внутренняя ошибка сервера
+definitions:
+  GradesDTO:
+    type: object
+    properties:
+      family:
+        type: string
+        description: Фамилия ученика
+      name:
+        type: string
+        description: Имя ученика
+      age:
+        type: integer
+        description: Возраст ученика
+      classId:
+        type: integer
+        description: Класс ученика
+      average:
+        type: number
+        description: Средний балл ученика
